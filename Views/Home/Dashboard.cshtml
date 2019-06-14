@@ -1,0 +1,41 @@
+<nav class="navbar navbar-fluid navbar-expand-lg navbar-dark bg-dark mb-5">
+    <a class="navbar-brand ml-5 lead" href="#"><big> Welcome to Wedding Planner </big></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Wedding</th>
+                <th>Date</th>
+                <th>Guests</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach( var g in ViewBag.Weddings)
+            {
+            <tr>
+                <th scope="row"><a href="/wed/{g.WedId}">@g.WedOne and @g.WedTwo!</a></th>
+                <td>@g.Date</td>
+                @foreach(var h in g.Guests)
+                {
+                <td>@g.Name</td>
+                @if (g.WedId == h.UserId) {
+                    <td>Delete</td>
+                } else {
+                    <td>RSVP</td>
+                }
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/newwedding" class="btn btn-dark">New Wedding</a>
+</div>
